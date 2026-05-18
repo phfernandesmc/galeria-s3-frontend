@@ -30,12 +30,12 @@ function App() {
         <h1 className="text-lg font-bold">Galeria S3</h1>
       </header>
 
-      <div className="flex">
-        {/* Sidebar - colapsável em mobile */}
+      <div className="flex min-h-[calc(100vh-0px)] md:min-h-screen">
+        {/* Sidebar - colapsável em mobile, full height */}
         <aside
           className={`
             fixed inset-y-0 left-0 z-20 w-64 transform border-r bg-white p-4 pt-16 transition-transform duration-200 ease-in-out
-            md:static md:z-auto md:translate-x-0 md:pt-4
+            md:sticky md:top-0 md:z-auto md:h-screen md:translate-x-0 md:pt-4
             ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           `}
         >
