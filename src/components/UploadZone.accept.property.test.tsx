@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import * as fc from "fast-check";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { UploadZone } from "./UploadZone";
 import { CATEGORIAS, CATEGORIA_ACCEPT, type Categoria } from "@/lib/constants";
 
@@ -27,7 +26,6 @@ describe("Property 5: File input accept attribute per category", () => {
 
     fc.assert(
       fc.property(categoriaArb, (categoria: Categoria) => {
-        const user = userEvent.setup();
         const { unmount } = render(<UploadZone />);
 
         const select = screen.getByLabelText("Categoria") as HTMLSelectElement;

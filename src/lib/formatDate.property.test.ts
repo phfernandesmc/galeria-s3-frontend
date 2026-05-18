@@ -15,7 +15,7 @@ describe("Property 9: Date formatting in pt-BR locale", () => {
   it("para qualquer data válida, retorna string no padrão dd/mm/yyyy", () => {
     fc.assert(
       fc.property(
-        fc.date({ min: new Date("1900-01-01T00:00:00Z"), max: new Date("2100-12-31T23:59:59Z") }),
+        fc.date({ min: new Date("1900-01-01T00:00:00Z"), max: new Date("2100-12-31T23:59:59Z") }).filter((d) => !isNaN(d.getTime())),
         (date) => {
           const isoString = date.toISOString();
           const result = formatDate(isoString);

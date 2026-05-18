@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import * as fc from "fast-check";
 import { UploadZone } from "./UploadZone";
 import { apiClient } from "@/lib/apiClient";
-import { CATEGORIAS, type Categoria } from "@/lib/constants";
+import { CATEGORIAS } from "@/lib/constants";
 
 /**
  * Feature: galeria-s3-frontend, Property 3: Upload request formation

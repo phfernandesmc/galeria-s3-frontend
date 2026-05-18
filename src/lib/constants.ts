@@ -28,5 +28,8 @@ export const CATEGORIA_ICONS: Record<string, React.ComponentType<any>> = {
 };
 
 export function getCategoriaIcon(categoria: string): React.ComponentType<any> {
-  return CATEGORIA_ICONS[categoria] ?? File;
+  if (Object.prototype.hasOwnProperty.call(CATEGORIA_ICONS, categoria)) {
+    return CATEGORIA_ICONS[categoria];
+  }
+  return File;
 }
