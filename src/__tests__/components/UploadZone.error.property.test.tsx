@@ -2,7 +2,7 @@ import { render, screen, waitFor, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import * as fc from "fast-check";
-import { UploadZone } from "./UploadZone";
+import { UploadZone } from "@/components/UploadZone";
 import { apiClient } from "@/lib/apiClient";
 
 /**

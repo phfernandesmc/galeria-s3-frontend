@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { UploadZone } from "./UploadZone";
+import { UploadZone } from "@/components/UploadZone";
 import { CATEGORIAS, CATEGORIA_LABELS, CATEGORIA_ACCEPT } from "@/lib/constants";
 import { apiClient } from "@/lib/apiClient";
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { formatFileSize, formatDate } from "./formatters";
+import { formatFileSize, formatDate } from "@/lib/formatters";
 
 describe("formatFileSize", () => {
   it("retorna '0.00 MB' para 0 bytes", () => {

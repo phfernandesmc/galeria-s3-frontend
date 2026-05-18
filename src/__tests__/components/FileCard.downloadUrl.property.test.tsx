@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import * as fc from "fast-check";
-import { FileCard } from "./FileCard";
+import { FileCard } from "@/components/FileCard";
 import { apiClient } from "@/lib/apiClient";
 
 /**

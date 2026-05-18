@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import * as fc from "fast-check";
-import { formatFileSize } from "./formatters";
+import { formatFileSize } from "@/lib/formatters";
 
 /**
  * Feature: galeria-s3-frontend, Property 8: File size formatting

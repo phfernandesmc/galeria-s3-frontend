@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { apiClient } from "./apiClient";
+import { apiClient } from "@/lib/apiClient";
 
 describe("apiClient", () => {
   it("deve ser uma instância Axios exportada como named export", () => {

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
-import { Sidebar } from "./Sidebar";
+import { Sidebar } from "@/components/Sidebar";
 import { CATEGORIAS, CATEGORIA_LABELS } from "@/lib/constants";
 
 describe("Sidebar", () => {

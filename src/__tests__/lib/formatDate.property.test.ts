@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import fc from "fast-check";
-import { formatDate } from "./formatters";
+import { formatDate } from "@/lib/formatters";
 
 /**
  * Feature: galeria-s3-frontend, Property 9: Date formatting in pt-BR locale

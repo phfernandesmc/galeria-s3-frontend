@@ -2,7 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
-import { Dashboard } from "./Dashboard";
+import { Dashboard } from "@/components/Dashboard";
 
 const mockArquivos = [
   { id: "1", nome: "foto1.jpg", data: "2024-01-15", tamanho: 1048576 },

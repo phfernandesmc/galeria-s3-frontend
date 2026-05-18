@@ -1,7 +1,7 @@
 import { render, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import * as fc from "fast-check";
-import { Dashboard } from "./Dashboard";
+import { Dashboard } from "@/components/Dashboard";
 import { apiClient } from "@/lib/apiClient";
 import { CATEGORIAS, type Categoria } from "@/lib/constants";
 

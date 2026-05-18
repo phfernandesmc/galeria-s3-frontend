@@ -5,7 +5,7 @@ import {
   CATEGORIA_ACCEPT,
   CATEGORIA_ICONS,
   getCategoriaIcon,
-} from "./constants";
+} from "@/lib/constants";
 import { Image, FileSpreadsheet, FileText, File } from "lucide-react";
 
 describe("constants", () => {

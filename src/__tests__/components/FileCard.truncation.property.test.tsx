@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import * as fc from "fast-check";
-import { FileCard } from "./FileCard";
+import { FileCard } from "@/components/FileCard";
 
 /**
  * Feature: galeria-s3-frontend, Property 10: File name truncation

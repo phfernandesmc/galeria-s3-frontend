@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
 import * as fc from "fast-check";
 import { render, screen } from "@testing-library/react";
-import { UploadZone } from "./UploadZone";
+import { UploadZone } from "@/components/UploadZone";
 import { CATEGORIAS, CATEGORIA_ACCEPT, type Categoria } from "@/lib/constants";
 
 /**

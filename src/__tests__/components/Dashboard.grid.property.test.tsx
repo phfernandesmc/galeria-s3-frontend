@@ -3,7 +3,7 @@ import { describe, it, expect, beforeAll, afterAll, afterEach } from "vitest";
 import * as fc from "fast-check";
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
-import { Dashboard } from "./Dashboard";
+import { Dashboard } from "@/components/Dashboard";
 import { formatDate, formatFileSize } from "@/lib/formatters";
 
 /**
