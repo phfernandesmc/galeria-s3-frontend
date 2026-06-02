@@ -53,15 +53,16 @@ describe("Property 3: Upload request formation", () => {
 
         const { unmount } = render(<UploadZone />);
 
-        // Select the category using fireEvent for synchronous property testing
-        const select = screen.getByLabelText("Categoria") as HTMLSelectElement;
-        fireEvent.change(select, { target: { value: categoria } });
-
-        // Upload a file using fireEvent to bypass accept attribute filtering
+        // Upload a file first using fireEvent to bypass accept attribute filtering.
+        // (A seleção do arquivo auto-detecta a categoria; o select abaixo a sobrescreve.)
         const fileInput = screen.getByLabelText("Arquivo") as HTMLInputElement;
         const file = new File(["conteudo-teste"], fileName, { type: "application/octet-stream" });
         Object.defineProperty(fileInput, "files", { value: [file], configurable: true });
         fireEvent.change(fileInput);
+
+        // Select (override) the category using fireEvent for synchronous property testing
+        const select = screen.getByLabelText("Categoria") as HTMLSelectElement;
+        fireEvent.change(select, { target: { value: categoria } });
 
         // Click submit
         const submitButton = screen.getByRole("button", { name: /enviar/i });

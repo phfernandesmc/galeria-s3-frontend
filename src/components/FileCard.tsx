@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
-import { Download, Loader2 } from "lucide-react";
+import { Download, Loader2, Calendar, HardDrive } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { apiClient } from "@/lib/apiClient";
 import { formatFileSize, formatDate } from "@/lib/formatters";
-import { getCategoriaIcon } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import {
+  getCategoriaStyle,
+  getCategoriaFromNome,
+} from "@/lib/constants";
 
 export interface FileCardProps {
   id: string;
@@ -14,11 +18,29 @@ export interface FileCardProps {
   categoria?: string;
 }
 
+const CATEGORIAS_VALIDAS = new Set<string>([
+  "fotos",
+  "planilhas",
+  "documentos",
+  "outros",
+]);
+
 function truncateName(nome: string): string {
   if (nome.length > 40) {
     return nome.slice(0, 37) + "...";
   }
   return nome;
+}
+
+/**
+ * Determina a categoria efetiva do arquivo: usa a categoria explícita quando
+ * válida, caso contrário deriva da extensão do nome do arquivo.
+ */
+function resolverCategoria(categoria: string | undefined, nome: string): string {
+  if (categoria && CATEGORIAS_VALIDAS.has(categoria)) {
+    return categoria;
+  }
+  return getCategoriaFromNome(nome);
 }
 
 export function FileCard({ id, nome, data, tamanho, categoria }: Readonly<FileCardProps>) {
@@ -46,23 +68,42 @@ export function FileCard({ id, nome, data, tamanho, categoria }: Readonly<FileCa
     }
   };
 
-  const IconComponent = getCategoriaIcon(categoria ?? "outros");
+  const categoriaEfetiva = resolverCategoria(categoria, nome);
+  const style = getCategoriaStyle(categoriaEfetiva);
+  const IconComponent = style.icon;
 
   return (
-    <Card className="flex flex-col justify-between">
+    <Card
+      className={cn(
+        "card-surface flex flex-col justify-between border-l-4 transition-shadow hover:shadow-lg hover:shadow-black/30",
+        style.borderColor
+      )}
+    >
       <CardContent className="p-4 flex flex-col gap-3">
         <div className="flex items-start gap-3">
-          <IconComponent className="h-6 w-6 shrink-0 text-muted-foreground" />
+          <div
+            className={cn(
+              "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl shadow-sm",
+              style.iconBg
+            )}
+          >
+            <IconComponent className={cn("h-6 w-6", style.iconColor)} />
+          </div>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium leading-tight break-all" title={nome}>
+            <p className="text-sm font-semibold leading-tight break-all text-foreground" title={nome}>
               {truncateName(nome)}
             </p>
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1">
+                <Calendar className="h-3.5 w-3.5 shrink-0" />
+                {formatDate(data)}
+              </span>
+              <span className="flex items-center gap-1">
+                <HardDrive className="h-3.5 w-3.5 shrink-0" />
+                {formatFileSize(tamanho)}
+              </span>
+            </div>
           </div>
-        </div>
-
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span>{formatDate(data)}</span>
-          <span>{formatFileSize(tamanho)}</span>
         </div>
 
         {downloadError && (
@@ -70,7 +111,7 @@ export function FileCard({ id, nome, data, tamanho, categoria }: Readonly<FileCa
         )}
 
         <Button
-          variant="outline"
+          variant="default"
           size="sm"
           className="w-full"
           onClick={handleDownload}

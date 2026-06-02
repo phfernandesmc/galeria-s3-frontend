@@ -20,18 +20,20 @@ describe("Sidebar", () => {
     render(<Sidebar categoriaAtiva={null} onCategoriaChange={() => {}} />);
 
     const todosButton = screen.getByRole("button", { name: "Todos" });
-    // O botão ativo usa variant "default" que tem bg-primary
-    expect(todosButton.className).toContain("bg-primary");
+    // O botão "Todos" ativo usa o degradê multicolor (estilo Instagram)
+    expect(todosButton.className).toContain("sidebar-todos-active");
   });
 
-  it("destaca visualmente o botão da categoria ativa", () => {
+  it("destaca visualmente o botão da categoria ativa com a cor da categoria", () => {
     render(<Sidebar categoriaAtiva="fotos" onCategoriaChange={() => {}} />);
 
     const fotosButton = screen.getByRole("button", { name: "Fotos" });
     const todosButton = screen.getByRole("button", { name: "Todos" });
 
-    expect(fotosButton.className).toContain("bg-primary");
-    expect(todosButton.className).not.toContain("bg-primary");
+    // A categoria ativa é preenchida com sua cor sólida
+    expect(fotosButton.className).toContain("bg-blue-500");
+    // "Todos" não está ativo, então não recebe o degradê
+    expect(todosButton.className).not.toContain("sidebar-todos-active");
   });
 
   it("chama onCategoriaChange com null ao clicar em 'Todos'", async () => {

@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Sidebar } from "@/components/Sidebar";
 import { Dashboard } from "@/components/Dashboard";
 import { UploadZone } from "@/components/UploadZone";
-import type { Categoria } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import { CATEGORIA_STYLES, type Categoria } from "@/lib/constants";
 
 function App() {
   const [categoriaAtiva, setCategoriaAtiva] = useState<Categoria | null>(null);
@@ -15,10 +16,14 @@ function App() {
     setRefreshTrigger((prev) => prev + 1);
   }
 
+  const bgClass = categoriaAtiva
+    ? CATEGORIA_STYLES[categoriaAtiva].bgClass
+    : "app-bg-todos";
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={cn("app-bg min-h-screen", bgClass)}>
       {/* Header */}
-      <header className="sticky top-0 z-30 flex items-center gap-2 border-b bg-white px-4 py-3 shadow-sm md:hidden">
+      <header className="panel-glass sticky top-0 z-30 flex items-center gap-2 border-b px-4 py-3 shadow-sm md:hidden">
         <Button
           variant="ghost"
           size="icon"
@@ -34,7 +39,7 @@ function App() {
         {/* Sidebar - colapsável em mobile, full height */}
         <aside
           className={`
-            fixed inset-y-0 left-0 z-20 w-64 transform border-r bg-white p-4 pt-16 transition-transform duration-200 ease-in-out
+            panel-glass fixed inset-y-0 left-0 z-20 w-64 transform border-r p-4 pt-16 transition-transform duration-200 ease-in-out
             md:sticky md:top-0 md:z-auto md:h-screen md:translate-x-0 md:pt-4
             ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
           `}
@@ -52,7 +57,7 @@ function App() {
         {/* Overlay para mobile quando sidebar está aberta */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 z-10 bg-black/30 md:hidden"
+            className="fixed inset-0 z-10 bg-black/50 md:hidden"
             onClick={() => setSidebarOpen(false)}
             aria-hidden="true"
           />
@@ -60,7 +65,7 @@ function App() {
 
         {/* Conteúdo principal */}
         <main className="flex-1 p-4 md:p-6">
-          <div className="mb-6 rounded-lg border bg-white p-4 shadow-sm">
+          <div className="card-surface mb-6 rounded-lg border p-4 shadow-sm">
             <h2 className="mb-3 text-sm font-semibold text-muted-foreground">
               Upload de Arquivo
             </h2>
