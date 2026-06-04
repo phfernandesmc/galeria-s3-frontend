@@ -27,10 +27,25 @@ Este é o cliente web da Galeria de Arquivos em Nuvem. Uma interface limpa, intu
    npm install
 
 3. **Configure a URL da API:**
-   Certifique-se de que o backend está rodando no endereço configurado nas requisições do Axios (padrão: `http://127.0.0.1:8000`).
+   Copie `.env.example` para `.env` e ajuste `VITE_API_URL` (o `.env` é ignorado pelo git):
+   ```env
+   VITE_API_URL=http://localhost:8000
+   ```
+   > ⚠️ Variáveis `VITE_*` são embutidas no bundle e ficam visíveis no navegador — use apenas valores públicos (a URL da API não é segredo).
 
 4. **Inicie o projeto em ambiente de desenvolvimento:**
    ```bash
    npm run dev
+   ```
 
 Abra o endereço indicado no terminal (geralmente http://localhost:5173) no seu navegador.
+
+## 🧪 Testes
+```bash
+npm test
+```
+
+## 🚀 Deploy (Vercel)
+1. Importe o repositório na Vercel (framework detectado: Vite).
+2. Em **Settings → Environment Variables**, defina `VITE_API_URL` (escopo Production) com a URL pública do backend.
+3. Após o deploy, copie a URL final do frontend e adicione-a em `CORS_ORIGINS` no backend.
